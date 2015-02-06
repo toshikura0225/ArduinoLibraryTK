@@ -1,4 +1,8 @@
-﻿class Pin
+﻿#ifndef Pin_h
+#define Pin_h
+
+
+class Pin
 {
 	public:
 		Pin(int pinNumber);
@@ -9,3 +13,5 @@
 	protected:
 		
 };
+
+#endif
