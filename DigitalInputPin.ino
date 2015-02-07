@@ -1,15 +1,15 @@
-﻿#include "DigitalInputPin.h"
+#include "DigitalInputPin.h"
 
 #define KEEPING_TIMER 100
 
-DigitalInputPin::DigitalInputPin(int pinNumber)
+DigitalInputPin::DigitalInputPin(int argNumber)
 {
-	DigitalInputPinNumber = pinNumber;
+	(*this).pinNumber = argNumber;
 }
 
 int DigitalInputPin::GetState()
 {
-	return HIGH;
+  return digitalRead((*this).pinNumber);
 }
 int DigitalInputPin::IsShifted()
 {
