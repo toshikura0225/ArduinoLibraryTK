@@ -1,19 +1,22 @@
-﻿#include "Pin.h"
+﻿#include "DigitalInputPin.h"
 
 #define KEEPING_TIMER 100
 
-Pin::Pin(int pinNumber)
+DigitalInputPin::DigitalInputPin(int pinNumber)
 {
-	PinNumber = pinNumber;
+	DigitalInputPinNumber = pinNumber;
 }
 
-
-int Pin::IsShifted()
+int DigitalInputPin::GetState()
 {
-	return 1;
+	return HIGH;
+}
+int DigitalInputPin::IsShifted()
+{
+	return HIGH;
 }
 
-int Pin::IsShifted(int keepingTimer)
+int DigitalInputPin::IsShifted(int keepingTimer)
 {
-	return 1;
+	return HIGH;
 }

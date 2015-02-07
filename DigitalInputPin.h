@@ -1,11 +1,11 @@
-﻿#ifndef Pin_h
-#define Pin_h
+﻿#ifndef DigitalInputPin_h
+#define DigitalInputPin_h
 
 
-class Pin
+class DigitalInputPin
 {
 	public:
-		Pin(int pinNumber);
+		DigitalInputPin(int pinNumber);
 		int PinNumber;
 		int IsShifted();
 		int IsShifted(int keepingTimer);
