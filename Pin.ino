@@ -19,11 +19,23 @@ void setup() {
   Serial.begin(9600);
 }
 
+bool flag = true;
 // the loop routine runs over and over again forever:
 void loop() {
-  digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(1000);               // wait for a second
-  digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
-  delay(1000);               // wait for a second
+  flag = !flag;
+  if(flag)
+  {
+	  digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
+  }
+  else
+  {
+	  digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
+  }
+  
+  delay(500);               // wait for a second
+  
   Serial.write(dip.GetState()+'0'); // 1バイトのデータを送信
+  Serial.write(','); // 1バイトのデータを送信
+  Serial.write(dip.IsShifted()+'0'); // 1バイトのデータを送信
+  Serial.write(','); // 1バイトのデータを送信
 }

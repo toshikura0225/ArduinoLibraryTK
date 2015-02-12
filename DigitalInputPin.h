@@ -5,13 +5,15 @@
 class DigitalInputPin
 {
 	public:
-		DigitalInputPin(int pinNumber);
+		DigitalInputPin(int argNumber);
+		DigitalInputPin(int argNumber, int argTimer);
 		int GetState();
 		int IsShifted();
 		int IsShifted(int keepingTimer);
 		
 	protected:
 		int pinNumber;
+		int keepingTimer;
 };
 
 #endif
