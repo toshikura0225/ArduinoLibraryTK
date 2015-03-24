@@ -2,15 +2,15 @@
 
 DigitalInputPin::DigitalInputPin(int argNumber)
 {
-	(*this).init(10);
+	(*this).init(argNumber,10);
 }
 
 DigitalInputPin::DigitalInputPin(int argNumber, int argKeepingConstant)
 {
-	(*this).init(argKeepingConstant);
+	(*this).init(argNumber, argKeepingConstant);
 }
 
-DigitalInputPin::init(int argKeepingConstant)
+void DigitalInputPin::init(int argNumber, int argKeepingConstant)
 {
 	(*this).pinNumber = argNumber;
 	(*this).keepingConstant = 10;

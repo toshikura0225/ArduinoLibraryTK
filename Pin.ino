@@ -10,32 +10,21 @@
 // give it a name:
 int led = 13;
 
-DigitalInputPin dip(12);
+DigitalInputPin dip(2);
 
 // the setup routine runs once when you press reset:
 void setup() {                
   // initialize the digital pin as an output.
-  pinMode(led, OUTPUT);
   Serial.begin(9600);
 }
 
 bool flag = true;
 // the loop routine runs over and over again forever:
 void loop() {
-  flag = !flag;
-  if(flag)
+
+  int a = dip.IsShifted();
+  if( a != -1)
   {
-	  digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
+    Serial.print(a);
   }
-  else
-  {
-	  digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
-  }
-  
-  delay(500);               // wait for a second
-  
-  Serial.write(dip.GetState()+'0'); // 1バイトのデータを送信
-  Serial.write(','); // 1バイトのデータを送信
-  Serial.write(dip.IsShifted()+'0'); // 1バイトのデータを送信
-  Serial.write(','); // 1バイトのデータを送信
 }

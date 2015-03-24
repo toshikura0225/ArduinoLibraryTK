@@ -17,7 +17,7 @@ class DigitalInputPin
 		int keepingCount;
 		int keepingState;
 		int preState;
-		void init(int argKeepingConstant);
+		void init(int argNumber, int argKeepingConstant);
 };
 
 #endif
