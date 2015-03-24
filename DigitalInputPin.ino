@@ -2,7 +2,7 @@
 
 DigitalInputPin::DigitalInputPin(int argNumber)
 {
-	(*this).init(argNumber,10);
+	(*this).init(argNumber,100);
 }
 
 DigitalInputPin::DigitalInputPin(int argNumber, int argKeepingConstant)
@@ -13,11 +13,11 @@ DigitalInputPin::DigitalInputPin(int argNumber, int argKeepingConstant)
 void DigitalInputPin::init(int argNumber, int argKeepingConstant)
 {
 	(*this).pinNumber = argNumber;
-	(*this).keepingConstant = 10;
+	(*this).keepingConstant = argKeepingConstant;
 	pinMode(pinNumber, INPUT_PULLUP);
 	(*this).keepingCount = 0;
 	(*this).keepingState = digitalRead((*this).pinNumber);
-	(*this).preState = (*this).keepingState;		// 前回の状態
+	(*this).preKeepingState = (*this).keepingState;		// 前回の状態
 }
 
 int DigitalInputPin::GetState()
@@ -25,7 +25,7 @@ int DigitalInputPin::GetState()
   int currentState = digitalRead((*this).pinNumber);	// 今回測定分の状態
   
   // 状態が連続して安定した回数をインクリメント
-  if ((*this).preState == currentState)
+  if ((*this).keepingState != currentState)
   {
       (*this).keepingCount++;
 
@@ -40,23 +40,22 @@ int DigitalInputPin::GetState()
   {
 	  (*this).keepingCount = 0;
   }
-
   
-  (*this).preState = currentState;
-  
-  return keepingState;
+  return (*this).keepingState;
 }
 
 // ピンの状態が変更となったら変更になった状態を返す。
 // 変更がない場合は-1を返す
 int DigitalInputPin::IsShifted()
 {
-	int currentState = (*this).GetState();
-	int retValue = -1;
-	if ((*this).preState != currentState)
+  int retValue = -1;
+  
+	if ((*this).preKeepingState != (*this).GetState())
 	{
-		retValue = currentState;
+		retValue = (*this).keepingState;
 	}
-	(*this).preState = currentState;
+  
+  (*this).preKeepingState = (*this).keepingState;
+
 	return retValue;
 }
